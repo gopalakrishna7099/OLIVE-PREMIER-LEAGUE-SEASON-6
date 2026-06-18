@@ -268,6 +268,28 @@ width: 100%;
 }
 }
 
+
+#muteBtn{
+padding:8px 15px;
+margin-top:8px;
+border:none;
+border-radius:8px;
+background:gold;
+color:#000;
+font-weight:600;
+cursor:pointer;
+}
+
+#muteBtn:hover{
+opacity:.9;
+}
+
+#dateTime{
+font-size:14px;
+font-weight:600;
+color:#fff;
+}
+
 </style>
 </head>
 
@@ -284,8 +306,17 @@ width: 100%;
 <div class="main">
 
 <div class="hero" id="hero">
-<h1>IPL Dashboard</h1>
-<p>Select a team</p>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">
+        <div>
+            <h1>IPL Dashboard</h1>
+            <p>Select a team</p>
+        </div>
+
+        <div style="text-align:right;">
+            <div id="dateTime"></div>
+            <button id="muteBtn">🔊 Voice ON</button>
+        </div>
+    </div>
 </div>
 
 <div class="search">
@@ -301,6 +332,7 @@ width: 100%;
 
 let currentIndex = 0;
 let autoSwitch = true;
+let isMuted = false;
 
 
 
@@ -505,87 +537,201 @@ players: [
 }
 ];
 
+
 let currentTeam = teams[0];
 
 const teamList = document.getElementById("teamList");
 const hero = document.getElementById("hero");
 const playersDiv = document.getElementById("players");
 
-function renderTeams(){
-teamList.innerHTML = "";
-teams.forEach((t,i)=>{
-teamList.innerHTML += `
-<div class="team-btn" onclick="selectTeam(${i})">${t.name}</div>
-`;
-});
+/* ---------------- ANNOUNCEMENTS ---------------- */
+
+const announcements = {
+    "Turbo Titans":
+        "Ladies and Gentlemen Welcome to OPL SEASON-6. Presenting Turbo Titans. The masters of speed and power have arrived.",
+
+    "Olive Firebirds":
+        "Ladies and Gentlemen. Presenting Olive Firebirds. Rising from the flames with unstoppable passion.",
+
+    "Team CC":
+        "Ladies and Gentlemen. Presenting Team CC. Consistency, coordination, and confidence in every match..",
+
+    "Black Panthers":
+        "Ladies and Gentlemen. Presenting Black Panthers. Silent hunters ready to strike.",
+
+    "Blue Olive Strikers":
+        "Ladies and Gentlemen. Presenting Blue Olive Strikers. Precision, passion and performance.",
+
+    "Power Warriors":
+        "Ladies and Gentlemen. Presenting Power Warriors. Strength in every move and courage in every moment.",
+
+    "Shadow Strikers":
+        "Ladies and Gentlemen. Presenting Shadow Strikers. Emerging from the shadows to conquer the game.",
+
+    "Victory Vikings":
+        "Ladies and Gentlemen. Presenting Victory Vikings. Fearlessly sailing toward victory and glory."
+};
+
+/* ---------------- SPEECH ---------------- */
+
+function speakTeamName(teamName) {
+    if (isMuted) return;
+
+    speechSynthesis.cancel();
+
+    const speech = new SpeechSynthesisUtterance(
+        announcements[teamName] || `Welcome to ${teamName}`
+    );
+
+    speech.rate = 0.9;
+    speech.pitch = 1;
+    speech.volume = 1;
+
+    const voices = speechSynthesis.getVoices();
+    if (voices.length > 0) {
+        speech.voice = voices[0];
+    }
+
+    speechSynthesis.speak(speech);
 }
 
-function selectTeam(index){
-currentIndex = index;
-currentTeam = teams[index];
+/* ---------------- UI RENDER ---------------- */
 
-hero.style.background = `linear-gradient(135deg,${currentTeam.color},#0b1224)`;
+function renderTeams() {
+    teamList.innerHTML = "";
 
-hero.innerHTML = `
-<h1>${currentTeam.name}</h1>
-<div class="owner">
-<img src="${currentTeam.ownerPhoto}">
-<div>
-<h3>Owner</h3>
-<h2>${currentTeam.owner}</h2>
-</div>
-</div>
-
-<div class="stats">
-<div class="stat"><h3>120</h3><p>Players</p></div>
-<div class="stat"><h3>OLIVE PREMIER LEAGUE</h3><p></p></div>
-<div class="stat"><h3>SEASON</h3><p>2026</p></div>
-</div>
-`;
-
-renderPlayers("");
+    teams.forEach((t, i) => {
+        teamList.innerHTML += `
+            <div class="team-btn" onclick="selectTeam(${i})">${t.name}</div>
+        `;
+    });
 }
 
+function renderPlayers(filter) {
+    playersDiv.innerHTML = "";
 
-function renderPlayers(filter){
-playersDiv.innerHTML = "";
-
-currentTeam.players
-.filter(p=>p.name.toLowerCase().includes(filter.toLowerCase()))
-.forEach(p=>{
-playersDiv.innerHTML += `
-<div class="player">
-<img src="${p.photo}">
-<h4>${p.name}</h4>
-</div>
-`;
-});
+    currentTeam.players
+        .filter(p => p.name.toLowerCase().includes(filter.toLowerCase()))
+        .forEach(p => {
+            playersDiv.innerHTML += `
+                <div class="player">
+                    <img src="${p.photo}">
+                    <h4>${p.name}</h4>
+                </div>
+            `;
+        });
 }
 
-document.getElementById("search")
-.addEventListener("input",(e)=>{
-renderPlayers(e.target.value);
-});
+/* ---------------- TEAM SWITCH ---------------- */
+
+function selectTeam(index) {
+    currentIndex = index;
+    currentTeam = teams[index];
+
+    hero.style.background =
+        `linear-gradient(135deg,${currentTeam.color},#0b1224)`;
+
+    hero.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">
+            <div>
+                <h1>${currentTeam.name}</h1>
+            </div>
+
+            <div style="text-align:right;">
+                <div id="dateTime"></div>
+                <button id="muteBtn">${isMuted ? "🔇 Voice OFF" : "🔊 Voice ON"}</button>
+            </div>
+        </div>
+
+        <div class="owner">
+            <img src="${currentTeam.ownerPhoto}">
+            <div>
+                <h3>Owner</h3>
+                <h2>${currentTeam.owner}</h2>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat"><h3>120</h3><p>Players</p></div>
+            <div class="stat"><h3>OLIVE PREMIER LEAGUE</h3></div>
+            <div class="stat"><h3>SEASON</h3><p>2026</p></div>
+        </div>
+    `;
+
+    attachMuteButton();
+    updateDateTime();
+    renderPlayers("");
+    speakTeamName(currentTeam.name);
+}
+
+/* ---------------- AUTO SWITCH ---------------- */
+
+function autoChangeTeam() {
+    setInterval(() => {
+        if (!autoSwitch) return;
+
+        currentIndex = (currentIndex + 1) % teams.length;
+        selectTeam(currentIndex);
+
+    }, 10000);
+}
+
+/* ---------------- MUTE BUTTON ---------------- */
+
+function attachMuteButton() {
+    const muteBtn = document.getElementById("muteBtn");
+
+    muteBtn.onclick = () => {
+        isMuted = !isMuted;
+
+        if (isMuted) {
+            speechSynthesis.cancel();
+            muteBtn.innerHTML = "🔇 Voice OFF";
+        } else {
+            muteBtn.innerHTML = "🔊 Voice ON";
+        }
+    };
+}
+
+/* ---------------- DATE TIME ---------------- */
+
+function updateDateTime() {
+    const now = new Date();
+
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    };
+
+    const date = now.toLocaleDateString('en-IN', options);
+    const time = now.toLocaleTimeString('en-IN');
+
+    const dt = document.getElementById("dateTime");
+
+    if (dt) {
+        dt.innerHTML = `${date}<br>${time}`;
+    }
+}
+
+/* ---------------- INIT (IMPORTANT ORDER FIX) ---------------- */
+
+window.speechSynthesis.onvoiceschanged = () => {
+    speechSynthesis.getVoices();
+};
 
 renderTeams();
 selectTeam(0);
-
-
-function autoChangeTeam(){
-
-setInterval(()=>{
-if(!autoSwitch) return;
-
-currentIndex = (currentIndex + 1) % teams.length;
-selectTeam(currentIndex);
-
-}, 20000); // 20 seconds (half minute)
-
-//60000); // 1 minute
-
-}
-
 autoChangeTeam();
+
+updateDateTime();
+setInterval(updateDateTime, 1000);
+
+document.getElementById("search")
+.addEventListener("input", (e) => {
+    renderPlayers(e.target.value);
+});
 
 </script>
 
