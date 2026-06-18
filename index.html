@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPL SEASON-6 Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+display:flex;
+background:#050b18;
+color:#fff;
+height:100vh;
+overflow:hidden;
+}
+
+/* SIDEBAR */
+.sidebar{
+width:220px;
+background:#0b1224;
+padding:20px;
+border-right:1px solid rgba(255,255,255,.1);
+overflow-y:auto;
+}
+
+.sidebar h2{
+color:gold;
+text-align:center;
+margin-bottom:20px;
+}
+
+.sidebar h3{
+color:Orange;
+text-align:center;
+margin-bottom:20px;
+}
+
+.team-btn{
+padding:12px;
+margin:8px 0;
+background:rgba(255,255,255,.05);
+border-radius:10px;
+cursor:pointer;
+text-align:center;
+transition:.3s;
+font-weight:600;
+}
+
+.team-btn:hover{
+background:gold;
+color:#000;
+transform:scale(1.05);
+}
+
+/* MAIN */
+.main{
+flex:1;
+overflow-y:auto;
+padding:5px;
+}
+
+/* HERO */
+.hero{
+padding:15px;
+border-radius:20px;
+background:linear-gradient(135deg,#1d4ed8,#0b1224);
+position:relative;
+overflow:hidden;
+}
+
+.hero h1{
+font-size:2rem;
+color:gold;
+}
+
+.owner{
+display:flex;
+align-items:center;
+gap:20px;
+margin-top:15px;
+}
+
+.owner img{
+width:120px;
+height:120px;
+border-radius:50%;
+border:4px solid gold;
+object-fit:cover;
+}
+
+.stats{
+display:flex;
+gap:20px;
+margin-top:20px;
+}
+
+.stat{
+background:rgba(255,255,255,.08);
+padding:15px;
+border-radius:12px;
+text-align:center;
+width:120px;
+}
+
+/* SEARCH */
+.search{
+margin:10px 0;
+}
+
+.search input{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:none;
+outline:none;
+}
+
+/* PLAYERS */
+.players{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:15px;
+}
+
+.player{
+background:rgba(255,255,255,.07);
+padding:15px;
+border-radius:15px;
+text-align:center;
+transition:.3s;
+}
+
+.player:hover{
+transform:translateY(-8px);
+background:rgba(255,215,0,.15);
+}
+
+.player img{
+width:100px;
+height:100px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #fff;
+}
+
+.player h4{
+margin-top:10px;
+font-size:14px;
+}
+
+
+
+
+
+/* =========================
+   MOBILE RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 768px) {
+
+body{
+flex-direction: column;
+height: auto;
+overflow-y: auto;
+}
+
+/* SIDEBAR → TOP BAR */
+.sidebar{
+width: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 10px;
+border-right: none;
+border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.sidebar h2{
+font-size: 16px;
+margin-bottom: 10px;
+}
+
+.team-btn{
+display: inline-block;
+width: 45%;
+margin: 5px;
+font-size: 12px;
+padding: 8px;
+}
+
+/* MAIN AREA */
+.main{
+padding: 10px;
+}
+
+/* HERO */
+.hero{
+padding: 10px;
+border-radius: 15px;
+}
+
+.hero h1{
+font-size: 18px;
+}
+
+.owner{
+flex-direction: column;
+text-align: center;
+gap: 10px;
+}
+
+.owner img{
+width: 90px;
+height: 90px;
+}
+
+/* STATS */
+.stats{
+flex-direction: column;
+gap: 10px;
+align-items: center;
+}
+
+.stat{
+width: 90%;
+}
+
+/* SEARCH */
+.search input{
+padding: 10px;
+font-size: 14px;
+}
+
+/* PLAYERS GRID */
+.players{
+grid-template-columns: repeat(2, 1fr);
+gap: 10px;
+}
+
+.player img{
+width: 70px;
+height: 70px;
+}
+
+.player h4{
+font-size: 12px;
+}
+}
+
+/* SMALL MOBILE (extra fix) */
+@media (max-width: 420px) {
+
+.players{
+grid-template-columns: repeat(1, 1fr);
+}
+
+.team-btn{
+width: 100%;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+<h2>OLIVE PREMIER LEAGUE</h2>
+<h3>SEASON-6 TEAMS</h3>
+<div id="teamList"></div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="hero" id="hero">
+<h1>IPL Dashboard</h1>
+<p>Select a team</p>
+</div>
+
+<div class="search">
+<input type="text" id="search" placeholder="Search player...">
+</div>
+
+<div class="players" id="players"></div>
+
+</div>
+
+<script>
+
+
+let currentIndex = 0;
+let autoSwitch = true;
+
+
+
+
+
+const teams = [
+{
+name:"Turbo Titans",
+owner:"Shabeer",
+color:"#004BA0",
+ownerPhoto:"owners/T.PNG",
+players: [
+    { name: "Turbo Titans Bharavi Gade", photo: "players/T1.png" },
+    { name: "Turbo Titans Lokesh", photo: "players/TT1.png" },
+	{ name: "Turbo Titans Kumar Raju", photo: "players/TT2.png" },
+    { name: "Turbo Titans Gopal Krishna", photo: "players/TT3.png" },
+    { name: "Turbo Titans Suresh Y", photo: "players/TT4.png" },
+    { name: "Turbo Titans Shashi P", photo: "players/TT5.png" },
+    { name: "Turbo Titans Brahmaiah T", photo: "players/TT6.png" },
+    { name: "Turbo Titans Jagadeesh", photo: "players/TT7.png" },
+    { name: "Turbo Titans Chandu M", photo: "players/TT8.png" },
+    { name: "Turbo Titans Sudharshan", photo: "players/TT9.png" },
+    { name: "Turbo Titans Sampath", photo: "players/TT10.png" },
+    { name: "Turbo Titans Sammer P", photo: "players/TT11.png" },
+    { name: "Turbo Titans Murali", photo: "players/TT12.png" },
+    { name: "Turbo Titans Madhu", photo: "players/TT13.png" },
+    { name: "Turbo Titans Vamshi Vardhan", photo: "players/TT14.png" }
+
+  ]
+},
+{
+name:"Olive Firebirds",
+owner:"Rajasekhar",
+color:"#F9CD05",
+ownerPhoto:"owners/O.PNG",
+players: [
+    { name: "Olive Firebirds Brahmaiah Divve", photo: "players/O1.png" },
+	 { name: "Olive Firebirds Chaitanya", photo: "players/O2.png" },
+    { name: "Olive Firebirds Sudheer G", photo: "players/O3.png" },
+    { name: "Olive Firebirds Sheiksha D", photo: "players/O4.png" },
+    { name: "Olive Firebirds Saifulla MD", photo: "players/O5.png" },
+    { name: "Olive Firebirds Basker", photo: "players/O6.png" },
+    { name: "Olive Firebirds Sai Sunil", photo: "players/O7.png" },
+    { name: "Olive Firebirds Narendra", photo: "players/O8.png" },
+    { name: "Olive Firebirds Mohan", photo: "players/O9.png" },
+    { name: "Olive Firebirds Byamkesh", photo: "players/O10.png" },
+    { name: "Olive Firebirds Siddarth", photo: "players/O11.png" },
+    { name: "Olive Firebirds Arun", photo: "players/O12.png" },
+    { name: "Olive Firebirds Naresh", photo: "players/O13.png" },
+    { name: "Olive Firebirds Samba", photo: "players/O14.png" },
+    { name: "Olive Firebirds Hima Kumar ", photo: "players/O15.png" }
+
+  ]
+},
+{
+name:"Team CC",
+owner:"Mahender",
+color:"#EC1C24",
+ownerPhoto:"owners/TE.PNG",
+players: [
+    { name: "Team CC", photo: "players/TC1.png" },
+	 { name: "Team CC", photo: "players/TC2.png" },
+    { name: "Team CC", photo: "players/TC3.png" },
+    { name: "Team CC", photo: "players/TC4.png" },
+    { name: "Team CC", photo: "players/TC5.png" },
+    { name: "Team CC", photo: "players/TC6.png" },
+    { name: "Team CC", photo: "players/TC7.png" },
+    { name: "Team CC", photo: "players/TC8.png" },
+    { name: "Team CC", photo: "players/TC9.png" },
+    { name: "Team CC", photo: "players/TC10.png" },
+    { name: "Team CC", photo: "players/TC11.png" },
+    { name: "Team CC", photo: "players/TC12.png" },
+    { name: "Team CC", photo: "players/TC13.png" },
+    { name: "Team CC", photo: "players/TC14.png" },
+    { name: "Team CC", photo: "players/TC15.png" }
+
+  ]
+  },
+{
+name:"Black Panthers",
+owner:"Vamsi M",
+color:"#3B0A45",
+ownerPhoto:"owners/BL.png",
+players: [
+    { name: "Black Panthers Vijendhar", photo: "players/B1.png" },
+	 { name: "Black Panthers Suresh", photo: "players/B2.png" },
+    { name: "Black Panthers Vamshi", photo: "players/B3.png" },
+    { name: "Black Panthers Srikanth T", photo: "players/B4.png" },
+    { name: "Black Panthers Chandu", photo: "players/B5.png" },
+    { name: "Black Panthers Mohanraj", photo: "players/B6.png" },
+    { name: "Black Panthers Bhargav", photo: "players/B7.png" },
+    { name: "Black Panthers Narendhar", photo: "players/B8.png" },
+    { name: "Black Panthers Kiran", photo: "players/B9.png" },
+    { name: "Black PanthersShankar", photo: "players/B10.png" },
+    { name: "Black Panthers Madhu", photo: "players/B11.png" },
+    { name: "Black Panthers Naveen", photo: "players/B12.png" },
+    { name: "Black Panthers Sandeep", photo: "players/B13.png" },
+    { name: "Black Panthers Naveen K", photo: "players/B14.png" },
+    { name: "Black Panthers Sai Charan", photo: "players/B15.png" }
+
+  ]
+},
+{
+name:"Blue Olive Strikers",
+owner:"Teja Hareesh",
+color:"#FF822A",
+ownerPhoto:"owners/B.png",
+players: [
+    { name: "Blue Olive Strikers", photo: "players/BO1.png" },
+	 { name: "Blue Olive Strikers", photo: "players/BO2.png" },
+    { name: "Blue Olive Strikers", photo: "players/BO3.png" },
+    { name: "Blue Olive Strikers", photo: "players/BO4.png" },
+    { name: "Blue Olive Strikers", photo: "players/BO5.png" },
+    { name: "Blue Olive Strikers", photo: "players/BO6.png" },
+    { name: "Blue Olive Strikers", photo: "players/BO7.png" },
+    { name: "Blue Olive Strikers", photo: "players/BO8.png" },
+    { name: "Blue Olive Strikers", photo: "players/BO9.png" },
+    { name: "Blue Olive Strikers", photo: "players/BO10.png" },
+    { name: "Blue Olive Strikers", photo: "players/BO11.png" },
+    { name: "Blue Olive Strikers", photo: "players/BO12.png" },
+    { name: "Blue Olive Strikers", photo: "players/BO13.png" },
+    { name: "Blue Olive Strikers", photo: "players/BO14.png" },
+    { name: "Blue Olive Strikers", photo: "players/BO15.png" }
+
+  ]
+},
+
+{
+  name: "Power Warriors",
+  owner: "Owner Name",
+  color: "#004BA0",
+  ownerPhoto: "owners/p.png",
+  players: [
+    { name: "Power Warriors Nayarana", photo: "players/p1.png" },
+	 { name: "Power Warriors Virat", photo: "players/p2.png" },
+    { name: "Power Warriors Shobe", photo: "players/p3.png" },
+    { name: "Power Warriors Amarthya", photo: "players/P4.png" },
+    { name: "Power Warriors Prashant", photo: "players/P5.png" },
+    { name: "Power Warriors Naveen", photo: "players/P6.png" },
+    { name: "Power Warriors Muni Bhaskar", photo: "players/P7.png" },
+    { name: "Power Warriors Chandu Mallela", photo: "players/P8.png" },
+    { name: "Power Warriors Kishore", photo: "players/p9.png" },
+    { name: "Power Warriors Praneeth", photo: "players/p10.png" },
+    { name: "Power Warriors Mano Kumar", photo: "players/p11.png" },
+    { name: "Power Warriors Kiran", photo: "players/p12.png" },
+    { name: "Power Warriors Bapanna", photo: "players/p13.png" },
+    { name: "Power Warriors Rakesh", photo: "players/p14.png" },
+    { name: "Power Warriors Pradeep Reddy", photo: "players/p15.png" }
+
+  ]
+},
+
+
+
+{
+name:"Shadow Strikers",
+owner:"Sharat Gade",
+color:"#004C93",
+ownerPhoto:"owners/S.png",
+players: [
+    { name: "Shadow Strikers Vamsi", photo: "players/S1.png" },
+	 { name:"Shadow Strikers Vivek",  photo: "players/S2.png" },
+    { name: "Shadow Strikers Diwahar", photo: "players/S3.png" },
+    { name: "Shadow Strikers Bhuvan", photo: "players/S4.png" },
+    { name: "Shadow Strikers Nitheesh", photo: "players/S5.png" },
+    { name: "Shadow Strikers Mahesh", photo: "players/S6.png" },
+    { name: "Shadow Strikers Vijay", photo: "players/S7.png" },
+    { name: "Shadow Strikers Gireesh", photo: "players/S8.png" },
+    { name: "Shadow Strikers Rishi", photo: "players/S9.png" },
+    { name: "Shadow Strikers Pradeep", photo: "players/S10.png" },
+    { name: "Shadow Strikers Sachin", photo: "players/S11.png" },
+    { name: "Shadow Strikers Shivanand", photo: "players/S12.png" },
+    { name: "Shadow Strikers BhanuSasidhar", photo: "players/S13.png" },
+    { name: "Shadow Strikers Shiva", photo: "players/S14.png" },
+    { name: "Shadow Strikers Praneeth", photo: "players/S15.png" }
+
+  ]
+},
+{
+name:"Victory Vikings",
+owner:"Rexlin Rajan",
+color:"#ED1B24",
+ownerPhoto:"owners/V.png",
+players: [
+    { name: "Victory Vikings Sadananda", photo: "players/V1.PNG" },
+	 { name: "Victory Vikings Sai Varma", photo: "players/V2.png" },
+    { name: "Victory Vikings Bhanu Prasad", photo: "players/V3.png" },
+    { name: "Victory Vikings Vamsi", photo: "players/V4.png" },
+    { name: "Victory Vikings Rahul", photo: "players/V5.png" },
+    { name: "Victory Vikings Naveen", photo: "players/V6.png" },
+    { name: "Victory Vikings Srinivas", photo: "players/V7.png" },
+    { name: "Victory Vikings Gopi", photo: "players/V8.png" },
+    { name: "Victory Vikings Narasa Reddy", photo: "players/V9.png" },
+    { name: "Victory Vikings Manohar", photo: "players/V10.png" },
+    { name: "Victory Vikings Ashok", photo: "players/V11.png" },
+    { name: "Victory Vikings Tarun", photo: "players/V12.png" },
+    { name: "Victory Vikings Shashidhar" , photo: "players/V13.png" },
+    { name: "Victory Vikings Sai Varma", photo: "players/V14.png" },
+    { name: "Victory Vikings Mahesh", photo: "players/V15.png" }
+
+  ]
+}
+];
+
+let currentTeam = teams[0];
+
+const teamList = document.getElementById("teamList");
+const hero = document.getElementById("hero");
+const playersDiv = document.getElementById("players");
+
+function renderTeams(){
+teamList.innerHTML = "";
+teams.forEach((t,i)=>{
+teamList.innerHTML += `
+<div class="team-btn" onclick="selectTeam(${i})">${t.name}</div>
+`;
+});
+}
+
+function selectTeam(index){
+currentIndex = index;
+currentTeam = teams[index];
+
+hero.style.background = `linear-gradient(135deg,${currentTeam.color},#0b1224)`;
+
+hero.innerHTML = `
+<h1>${currentTeam.name}</h1>
+<div class="owner">
+<img src="${currentTeam.ownerPhoto}">
+<div>
+<h3>Owner</h3>
+<h2>${currentTeam.owner}</h2>
+</div>
+</div>
+
+<div class="stats">
+<div class="stat"><h3>120</h3><p>Players</p></div>
+<div class="stat"><h3>OLIVE PREMIER LEAGUE</h3><p></p></div>
+<div class="stat"><h3>SEASON</h3><p>2026</p></div>
+</div>
+`;
+
+renderPlayers("");
+}
+
+
+function renderPlayers(filter){
+playersDiv.innerHTML = "";
+
+currentTeam.players
+.filter(p=>p.name.toLowerCase().includes(filter.toLowerCase()))
+.forEach(p=>{
+playersDiv.innerHTML += `
+<div class="player">
+<img src="${p.photo}">
+<h4>${p.name}</h4>
+</div>
+`;
+});
+}
+
+document.getElementById("search")
+.addEventListener("input",(e)=>{
+renderPlayers(e.target.value);
+});
+
+renderTeams();
+selectTeam(0);
+
+
+function autoChangeTeam(){
+
+setInterval(()=>{
+if(!autoSwitch) return;
+
+currentIndex = (currentIndex + 1) % teams.length;
+selectTeam(currentIndex);
+
+}, 30000); // 30 seconds (half minute)
+
+//60000); // 1 minute
+
+}
+
+autoChangeTeam();
+
+</script>
+
+</body>
+</html>
