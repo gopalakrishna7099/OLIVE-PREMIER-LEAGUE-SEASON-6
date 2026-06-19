@@ -351,20 +351,46 @@ color:#fff;
     transform:scale(1.05);
 }
 
+.floating-trophy{
+position:fixed;
+bottom:480px;
+
+Right:250px;
+font-size:30px;
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+100%{transform:translateY(0);}
+}
+
 </style>
+
 </head>
+
 
 <body>
 
 <!-- SIDEBAR -->
 <div class="sidebar">
-<h2>OLIVE PREMIER LEAGUE</h2>
+<h2>
+🏏 OPL 🏆
+<br>
+OLIVE PREMIER LEAGUE
+</h2>
 <h3>SEASON-6 TEAMS</h3>
 <div id="teamList"></div>
+
 </div>
+
+
 
 <!-- MAIN -->
 <div class="main">
+
+
 
 <div class="hero" id="hero">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">
@@ -473,10 +499,10 @@ players: [
     { name: "Team CC GouniSrikar Sagar ", photo: "./TC9.PNG" },
     { name: "Team CC V. Kalyan Kumar", photo: "./TC10.PNG" },
     { name: "Team CC K. Vamshi", photo: "./TC11.PNG" },
-    { name: "Team CC V. Kalyan Kumar", photo: "./TC12.PNG" },
-    { name: "Team CC M. Nagaraju", photo: "./TC13.PNG" },
+    { name: "Team CC M. Nagaraju", photo: "./TC12.PNG" },
+    { name: "Team CC V. Kalyan Kumar", photo: "./TC13.PNG" },
     { name: "Team CC K Vamsi", photo: "./TC14.PNG" },
-    { name: "Team CC Ashlesh Reddy", photo: "./TC15.PNG" }
+    { name: "Team CC Manoj Kumar", photo: "./TCC15.PNG" }
 
   ]
   },
@@ -731,7 +757,10 @@ function selectTeam(index) {
             <div class="stat"><h3>OLIVE PREMIER LEAGUE</h3></div>
             <div class="stat"><h3>SEASON</h3><p>2026</p></div>
         </div>
+		<div class="floating-trophy">🏆 Which team deserves this trophy?</div>
+		
     `;
+	
 
     attachMuteButton();
     updateDateTime();
