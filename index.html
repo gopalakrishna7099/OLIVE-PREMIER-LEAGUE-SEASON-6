@@ -339,6 +339,18 @@ color:#fff;
 }
 
 
+
+.owner img,
+.player img{
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.owner img:hover,
+.player img:hover{
+    transform:scale(1.05);
+}
+
 </style>
 </head>
 
@@ -380,6 +392,9 @@ color:#fff;
 </div>
 
 </div>
+
+
+
 
 <script>
 
@@ -702,7 +717,9 @@ function selectTeam(index) {
         </div>
 
         <div class="owner">
-            <img src="${currentTeam.ownerPhoto}">
+            <img src="${currentTeam.ownerPhoto}"
+     onclick="zoomImage('${currentTeam.ownerPhoto}')"
+     style="cursor:pointer;">
             <div>
                 <h3>Owner</h3>
                 <h2>${currentTeam.owner}</h2>
