@@ -397,6 +397,112 @@ color:#fff;
     border:3px solid gold;
 }
 
+.trophy-img{
+    width:150px;
+    height:220px;
+    object-fit:cover;
+    border-radius:15px;
+    border:3px solid gold;
+}
+
+.logo-banner{
+    position:relative;
+    background:linear-gradient(135deg,#0f172a,#1e293b,#0b1224);
+    border:1px solid rgba(255,215,0,.25);
+    border-radius:18px;
+    padding:15px;
+    margin-bottom:20px;
+    overflow:hidden;
+
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.35),
+    inset 0 0 30px rgba(255,215,0,.05);
+}
+
+.logo-banner::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:2px;
+
+    background:linear-gradient(
+        90deg,
+        gold,
+        orange,
+        gold
+    );
+}
+
+.league-logo{
+    display:block;
+    width:100%;
+    max-width:40px;
+    height:auto;
+    margin:0 auto 12px;
+    object-fit:contain;
+
+
+    filter:
+    drop-shadow(0 0 12px rgba(255,215,0,.5));
+}
+
+.league-info{
+    text-align:center;
+}
+
+
+
+.league-info h2{
+    color:white;
+    font-size:15px;
+    line-height:1.3;
+    margin-bottom:5px;
+    font-weight:800;
+}
+
+
+@media (max-width:768px){
+
+    .logo-banner{
+        padding:10px;
+        border-radius:12px;
+    }
+
+    .league-logo{
+        max-width:140px;
+    }
+
+    .league-info h2{
+        font-size:14px;
+    }
+
+    .league-info p{
+        font-size:11px;
+    }
+
+    .league-tag{
+        font-size:9px;
+        padding:3px 8px;
+    }
+}
+
+@media (max-width:420px){
+
+    .league-logo{
+        max-width:120px;
+    }
+
+    .league-info h2{
+        font-size:12px;
+    }
+
+    .league-info p{
+        font-size:10px;
+    }
+}
 
 
 </style>
@@ -408,12 +514,22 @@ color:#fff;
 
 <!-- SIDEBAR -->
 <div class="sidebar">
-<h2>
-🏏 OPL 🏆
-<br>
-OLIVE PREMIER LEAGUE
-</h2>
-<h3>SEASON-6 TEAMS</h3>
+
+<div class="logo-banner">
+
+    <img src="logo/LOGO.PNG" alt="OPL Logo" class="league-logo">
+
+    <div class="league-info">
+        
+        <h2>OLIVE PREMIER LEAGUE SEASON-6</h2>
+
+        
+    </div>
+
+</div>
+
+
+<h3>TEAMS NAMES</h3>
 <div id="teamList"></div>
 
 </div>
@@ -471,24 +587,25 @@ const teams = [
 name:"Turbo Titans",
 owner:"Shabeer",
 color:"#004BA0",
-ownerPhoto:"./T.png",
+ownerPhoto:"owners/T.png",
 posterPhoto:"./OWNER1.PNG",
+trophyPhoto:"./TROPHY.PNG",
 players: [
-    { name: "Turbo Titans Bharavi Gade", photo: "./TTT.PNG" },
-    { name: "Turbo Titans Lokesh", photo: "./TT1.PNG" },
-	{ name: "Turbo Titans Kumar Raju", photo: "./TT2.PNG" },
-    { name: "Turbo Titans Gopal Krishna", photo: "./TT3.PNG" },
-    { name: "Turbo Titans Suresh Y", photo: "./TT4.PNG" },
-    { name: "Turbo Titans Shashi P", photo: "./TT5.PNG" },
-    { name: "Turbo Titans Brahmaiah T", photo: "./TT6.PNG" },
-    { name: "Turbo Titans Jagadeesh", photo: "./TT7.PNG" },
-    { name: "Turbo Titans Chandu M", photo: "./TT8.PNG" },
-    { name: "Turbo Titans Sudharshan", photo: "./TT9.PNG" },
-    { name: "Turbo Titans Sampath", photo: "./TT10.PNG" },
-    { name: "Turbo Titans Sammer P", photo: "./TT11.PNG" },
-    { name: "Turbo Titans Murali", photo: "./TT12.PNG" },
-    { name: "Turbo Titans Madhu", photo: "./TT13.PNG" },
-    { name: "Turbo Titans Vamshi Vardhan", photo: "./TT14.PNG" }
+    { name: "Turbo Titans Bharavi Gade", photo: "./TTT.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Turbo Titans Lokesh", photo: "./TT1.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+	{ name: "Turbo Titans Kumar Raju", photo: "./TT2.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Turbo Titans Gopal Krishna", photo: "./TT3.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Turbo Titans Suresh Y", photo: "./TT4.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Turbo Titans Shashi P", photo: "./TT5.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Turbo Titans Brahmaiah T", photo: "./TT6.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Turbo Titans Jagadeesh", photo: "./TT7.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Turbo Titans Chandu M", photo: "./TT8.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Turbo Titans Sudharshan", photo: "./TT9.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Turbo Titans Sampath", photo: "./TT10.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Turbo Titans Sammer P", photo: "./TT11.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Turbo Titans Murali", photo: "./TT12.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Turbo Titans Madhu", photo: "./TT13.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Turbo Titans Vamshi Vardhan", photo: "./TT14.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 }
 
   ]
 },
@@ -497,23 +614,24 @@ name:"Olive Firebirds",
 owner:"Rajasekhar",
 color:"#F9CD05",
 ownerPhoto:"./O.png",
-posterPhoto:"./owner2.png",
+posterPhoto:"./OWNER2.PNG",
+trophyPhoto:"./TROPHY.PNG",
 players: [
-    { name: "Olive Firebirds Brahmaiah Divve", photo: "./O1.PNG" },
-	 { name: "Olive Firebirds Chaitanya", photo: "./O2.PNG" },
-    { name: "Olive Firebirds Sudheer G", photo: "./O3.PNG" },
-    { name: "Olive Firebirds Sheiksha D", photo: "./O4.PNG" },
-    { name: "Olive Firebirds Saifulla MD", photo: "./O5.PNG" },
-    { name: "Olive Firebirds Basker", photo: "./O6.PNG" },
-    { name: "Olive Firebirds Sai Sunil", photo: "./O7.PNG" },
-    { name: "Olive Firebirds Narendra", photo: "./O8.PNG" },
-    { name: "Olive Firebirds Mohan", photo: "./O9.PNG" },
-    { name: "Olive Firebirds Byamkesh", photo: "./O10.PNG" },
-    { name: "Olive Firebirds Siddarth", photo: "./O11.PNG" },
-    { name: "Olive Firebirds Arun", photo: "./O12.PNG" },
-    { name: "Olive Firebirds Naresh", photo: "./O13.PNG" },
-    { name: "Olive Firebirds Samba", photo: "./O14.PNG" },
-    { name: "Olive Firebirds Hima Kumar ", photo: "./O15.PNG" }
+    { name: "Olive Firebirds Brahmaiah Divve", photo: "./O1.PNG", runs: 4320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+	 { name: "Olive Firebirds Chaitanya", photo: "./O2.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Olive Firebirds Sudheer G", photo: "./O3.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Olive Firebirds Sheiksha D", photo: "./O4.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Olive Firebirds Saifulla MD", photo: "./O5.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Olive Firebirds Basker", photo: "./O6.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Olive Firebirds Sai Sunil", photo: "./O7.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Olive Firebirds Narendra", photo: "./O8.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Olive Firebirds Mohan", photo: "./O9.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Olive Firebirds Byamkesh", photo: "./O10.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Olive Firebirds Siddarth", photo: "./O11.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Olive Firebirds Arun", photo: "./O12.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Olive Firebirds Naresh", photo: "./O13.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Olive Firebirds Samba", photo: "./O14.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Olive Firebirds Hima Kumar ", photo: "./O15.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 }
 
   ]
 },
@@ -522,23 +640,24 @@ name:"Team CC",
 owner:"Mahender",
 color:"#EC1C24",
 ownerPhoto:"./TE.png",
-posterPhoto:"./owner3.PNG",
+posterPhoto:"./OWNER3.PNG",
+trophyPhoto:"./TROPHY.PNG",
 players: [
-    { name: "Team CC Venkatesh", photo: "./TC1.PNG" },
-	 { name: "Team CC Shashank Varma", photo: "./TC2.PNG" },
-    { name: "Team CC M. Rakesh", photo: "./TC3.PNG" },
-    { name: "Team CC Tagore", photo: "./TC4.PNG" },
-    { name: "Team CC Jagadeesh ", photo: "./TC5.PNG" },
-    { name: "Team CC Ravi shankar", photo: "./TC6.PNG" },
-    { name: "Team CC K.Karthik", photo: "./TC7.PNG" },
-    { name: "Team CC Shanmukheshwar Reddy", photo: "./TC8.PNG" },
-    { name: "Team CC GouniSrikar Sagar ", photo: "./TC9.PNG" },
-    { name: "Team CC V. Kalyan Kumar", photo: "./TC10.PNG" },
-    { name: "Team CC K. Vamshi", photo: "./TC11.PNG" },
-    { name: "Team CC M. Nagaraju", photo: "./TC12.PNG" },
-    { name: "Team CC V. Kalyan Kumar", photo: "./TC13.PNG" },
-    { name: "Team CC K Vamsi", photo: "./TC14.PNG" },
-    { name: "Team CC Manoj Kumar", photo: "./TCC15.PNG" }
+    { name: "Team CC Venkatesh", photo: "./TC1.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+	 { name: "Team CC Shashank Varma", photo: "./TC2.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Team CC M. Rakesh", photo: "./TC3.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Team CC Tagore", photo: "./TC4.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Team CC Jagadeesh ", photo: "./TC5.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Team CC Ravi shankar", photo: "./TC6.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Team CC K.Karthik", photo: "./TC7.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Team CC Shanmukheshwar Reddy", photo: "./TC8.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Team CC GouniSrikar Sagar ", photo: "./TC9.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Team CC V. Kalyan Kumar", photo: "./TC10.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Team CC K. Vamshi", photo: "./TC11.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Team CC M. Nagaraju", photo: "./TC12.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Team CC V. Kalyan Kumar", photo: "./TC13.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Team CC K Vamsi", photo: "./TC14.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Team CC Manoj Kumar", photo: "./TCC15.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 }
 
   ]
   },
@@ -547,23 +666,24 @@ name:"Black Panthers",
 owner:"Vamsi M",
 color:"#3B0A45",
 ownerPhoto:"./BL.png",
-posterPhoto:"./owner4.PNG",
+posterPhoto:"./OWNER4.PNG",
+trophyPhoto:"./TROPHY.PNG",
 players: [
-    { name: "Black Panthers Vijendhar", photo: "./B1.PNG" },
-	 { name: "Black Panthers Suresh", photo: "./B2.PNG" },
-    { name: "Black Panthers Vamshi", photo: "./B3.PNG" },
-    { name: "Black Panthers Srikanth T", photo: "./B4.PNG" },
-    { name: "Black Panthers Chandu", photo: "./B5.PNG" },
-    { name: "Black Panthers Mohanraj", photo: "./B6.PNG" },
-    { name: "Black Panthers Bhargav", photo: "./B7.PNG" },
-    { name: "Black Panthers Narendhar", photo: "./B8.PNG" },
-    { name: "Black Panthers Kiran", photo: "./B9.PNG" },
-    { name: "Black PanthersShankar", photo: "./B10.PNG" },
-    { name: "Black Panthers Madhu", photo: "./B11.PNG" },
-    { name: "Black Panthers Naveen", photo: "./B12.PNG" },
-    { name: "Black Panthers Sandeep", photo: "./B13.PNG" },
-    { name: "Black Panthers Naveen K", photo: "./B14.PNG" },
-    { name: "Black Panthers Sai Charan", photo: "./B15.PNG" }
+    { name: "Black Panthers Vijendhar", photo: "./B1.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+	 { name: "Black Panthers Suresh", photo: "./B2.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Black Panthers Vamshi", photo: "./B3.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Black Panthers Srikanth T", photo: "./B4.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Black Panthers Chandu", photo: "./B5.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Black Panthers Mohanraj", photo: "./B6.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Black Panthers Bhargav", photo: "./B7.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Black Panthers Narendhar", photo: "./B8.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Black Panthers Kiran", photo: "./B9.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Black PanthersShankar", photo: "./B10.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Black Panthers Madhu", photo: "./B11.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Black Panthers Naveen", photo: "./B12.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Black Panthers Sandeep", photo: "./B13.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Black Panthers Naveen K", photo: "./B14.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Black Panthers Sai Charan", photo: "./B15.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 }
 
   ]
 },
@@ -572,23 +692,24 @@ name:"Blue Olive Strikers",
 owner:"Teja Hareesh",
 color:"#FF822A",
 ownerPhoto:"./B.png",
-posterPhoto:"./owner5.PNG",
+posterPhoto:"./OWNER5.PNG",
+trophyPhoto:"./TROPHY.PNG",
 players: [
-    { name: "Blue Olive Strikers Sandeep", photo: "./BO1.PNG" },
-	 { name: "Blue Olive Strikers Kiran", photo: "./BO2.PNG" },
-    { name: "Blue Olive Strikers Ganesh", photo: "./BO3.PNG" },
-    { name: "Blue Olive Strikers Veera", photo: "./BO4.PNG" },
-    { name: "Blue Olive Strikers Sai", photo: "./BO5.PNG" },
-    { name: "Blue Olive Strikers Ganesh Babu", photo: "./BO6.PNG" },
-    { name: "Blue Olive Strikers Sai Sandeep", photo: "./BO7.PNG" },
-    { name: "Blue Olive Strikers Rahul", photo: "./BO8.PNG" },
-    { name: "Blue Olive Strikers Surendra", photo: "./BO9.PNG" },
-    { name: "Blue Olive Strikers Iqbal M", photo: "./BO10.PNG" },
-    { name: "Blue Olive Strikers Avinash", photo: "./BO11.PNG" },
-    { name: "Blue Olive Strikers Raj Kumar", photo: "./BO12.PNG" },
-    { name: "Blue Olive Strikers Uggam RajKumar", photo: "./BO13.PNG" },
-    { name: "Blue Olive Strikers Punith", photo: "./BO14.PNG" },
-    { name: "Blue Olive Strikers Raja A", photo: "./BO15.PNG" }
+    { name: "Blue Olive Strikers Sandeep", photo: "./BO1.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+	 { name: "Blue Olive Strikers Kiran", photo: "./BO2.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Blue Olive Strikers Ganesh", photo: "./BO3.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Blue Olive Strikers Veera", photo: "./BO4.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Blue Olive Strikers Sai", photo: "./BO5.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Blue Olive Strikers Ganesh Babu", photo: "./BO6.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Blue Olive Strikers Sai Sandeep", photo: "./BO7.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Blue Olive Strikers Rahul", photo: "./BO8.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4},
+    { name: "Blue Olive Strikers Surendra", photo: "./BO9.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Blue Olive Strikers Iqbal M", photo: "./BO10.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Blue Olive Strikers Avinash", photo: "./BO11.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Blue Olive Strikers Raj Kumar", photo: "./BO12.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Blue Olive Strikers Uggam RajKumar", photo: "./BO13.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Blue Olive Strikers Punith", photo: "./BO14.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Blue Olive Strikers Raja A", photo: "./BO15.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 }
 
   ]
 },
@@ -598,24 +719,25 @@ players: [
   owner: "Narayana P ",
   color: "#004BA0",
   ownerPhoto: "./P.png",
-  posterPhoto:"./owner6.PNG",
+  posterPhoto:"./OWNER6.PNG",
+  trophyPhoto:"./TROPHY.PNG",
   players: [
 
-	  { name: "Power Warriors Shoeb", photo: "./P3.PNG" },
-	 { name: "Power Warriors Virat", photo: "./P2.PNG" },
-    { name: "Power Warriors Amarthya", photo: "./P4.PNG" },
-	{ name: "Power Warriors Rakesh", photo: "./P14.PNG" },
-    { name: "Power Warriors Prashant", photo: "./P5.PNG" },
-    { name: "Power Warriors Naveen", photo: "./P6.PNG" },
-    { name: "Power Warriors Muni Bhaskar", photo: "./P7.PNG" },
-    { name: "Power Warriors Chandu Mallela", photo: "./P8.PNG" },
-    { name: "Power Warriors Kishore", photo: "./P9.PNG" },
-    { name: "Power Warriors Praneeth", photo: "./P10.PNG" },
-    { name: "Power Warriors Mano Kumar", photo: "./P11.PNG" },
-    { name: "Power Warriors Kiran", photo: "./P12.PNG" },
-    { name: "Power Warriors Bapanna", photo: "./P13.PNG" },
-	{ name: "Power Warriors Ravi P", photo: "./PP1.PNG" },
-    { name: "Power Warriors Pradeep Reddy", photo: "./P15.PNG" }
+	  { name: "Power Warriors Shoeb", photo: "./P3.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+	 { name: "Power Warriors Virat", photo: "./P2.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Power Warriors Amarthya", photo: "./P4.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+	{ name: "Power Warriors Rakesh", photo: "./P14.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Power Warriors Prashant", photo: "./P5.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Power Warriors Naveen", photo: "./P6.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Power Warriors Muni Bhaskar", photo: "./P7.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Power Warriors Chandu Mallela", photo: "./P8.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Power Warriors Kishore", photo: "./P9.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Power Warriors Praneeth", photo: "./P10.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Power Warriors Mano Kumar", photo: "./P11.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Power Warriors Kiran", photo: "./P12.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Power Warriors Bapanna", photo: "./P13.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+	{ name: "Power Warriors Ravi P", photo: "./PP1.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Power Warriors Pradeep Reddy", photo: "./P15.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 }
 	  
 
   ]
@@ -628,23 +750,24 @@ name:"Shadow Strikers",
 owner:"Sharat Gade",
 color:"#004C93",
 ownerPhoto:"./S.png",
-posterPhoto:"./owner7.PNG",
+posterPhoto:"./OWNER7.PNG",
+trophyPhoto:"./TROPHY.PNG",
 players: [
-    { name: "Shadow Strikers Vamsi", photo: "./S1.PNG" },
-	 { name:"Shadow Strikers Vivek",  photo: "./S2.PNG" },
-    { name: "Shadow Strikers Diwahar", photo: "./S3.PNG" },
-    { name: "Shadow Strikers Bhuvan", photo: "./S4.PNG" },
-    { name: "Shadow Strikers Nitheesh", photo: "./S5.PNG" },
-    { name: "Shadow Strikers Mahesh", photo: "./S6.PNG" },
-    { name: "Shadow Strikers Vijay", photo: "./S7.PNG" },
-    { name: "Shadow Strikers Gireesh", photo: "./S8.PNG" },
-    { name: "Shadow Strikers Rishi", photo: "./S9.PNG" },
-    { name: "Shadow Strikers Pradeep", photo: "./S10.PNG" },
-    { name: "Shadow Strikers Sachin", photo: "./S11.PNG" },
-    { name: "Shadow Strikers Shivanand", photo: "./S12.PNG" },
-    { name: "Shadow Strikers BhanuSasidhar", photo: "./S13.PNG" },
-    { name: "Shadow Strikers Shiva", photo: "./S14.PNG" },
-    { name: "Shadow Strikers Praneeth", photo: "./S15.PNG" }
+    { name: "Shadow Strikers Vamsi", photo: "./S1.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+	 { name:"Shadow Strikers Vivek",  photo: "./S2.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4},
+    { name: "Shadow Strikers Diwahar", photo: "./S3.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Shadow Strikers Bhuvan", photo: "./S4.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4},
+    { name: "Shadow Strikers Nitheesh", photo: "./S5.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4},
+    { name: "Shadow Strikers Mahesh", photo: "./S6.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Shadow Strikers Vijay", photo: "./S7.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Shadow Strikers Gireesh", photo: "./S8.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Shadow Strikers Rishi", photo: "./S9.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4},
+    { name: "Shadow Strikers Pradeep", photo: "./S10.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Shadow Strikers Sachin", photo: "./S11.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4},
+    { name: "Shadow Strikers Shivanand", photo: "./S12.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Shadow Strikers BhanuSasidhar", photo: "./S13.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Shadow Strikers Shiva", photo: "./S14.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Shadow Strikers Praneeth", photo: "./S15.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 }
 
   ]
 },
@@ -653,23 +776,24 @@ name:"Victory Vikings",
 owner:"Rexlin Rajan",
 color:"#ED1B24",
 ownerPhoto:"./V.png",
-posterPhoto:"./owner8.PNG",
+posterPhoto:"./OWNER8.PNG",
+trophyPhoto:"./TROPHY.PNG",
 players: [
-    { name: "Victory Vikings Sai Varma", photo: "./V1.PNG" },
-	 { name: "Victory Vikings Sadananda", photo: "./V2.PNG" },
-    { name: "Victory Vikings Bhanu Prasad", photo: "./V3.PNG" },
-    { name: "Victory Vikings Vamsi", photo: "./V4.PNG" },
-    { name: "Victory Vikings Rahul", photo: "./V5.PNG" },
-    { name: "Victory Vikings Naveen", photo: "./V6.PNG" },
-    { name: "Victory Vikings Srinivas", photo: "./V7.PNG" },
-    { name: "Victory Vikings Gopi", photo: "./V8.PNG" },
-    { name: "Victory Vikings Narasa Reddy", photo: "./V9.PNG" },
-    { name: "Victory Vikings Manohar", photo: "./V10.PNG" },
-    { name: "Victory Vikings Ashok", photo: "./V11.PNG" },
-    { name: "Victory Vikings Tarun", photo: "./V12.PNG" },
-    { name: "Victory Vikings Shashidhar" , photo: "./V13.PNG" },
-    { name: "Victory Vikings Sai Varma", photo: "./V14.PNG" },
-    { name: "Victory Vikings Mahesh", photo: "./V15.PNG" }
+    { name: "Victory Vikings Sai Varma", photo: "./V1.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+	 { name: "Victory Vikings Sadananda", photo: "./V2.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Victory Vikings Bhanu Prasad", photo: "./V3.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Victory Vikings Vamsi", photo: "./V4.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Victory Vikings Rahul", photo: "./V5.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Victory Vikings Naveen", photo: "./V6.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Victory Vikings Srinivas", photo: "./V7.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Victory Vikings Gopi", photo: "./V8.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4},
+    { name: "Victory Vikings Narasa Reddy", photo: "./V9.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Victory Vikings Manohar", photo: "./V10.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Victory Vikings Ashok", photo: "./V11.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Victory Vikings Tarun", photo: "./V12.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Victory Vikings Shashidhar" , photo: "./V13.PNG" , runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4},
+    { name: "Victory Vikings Sai Varma", photo: "./V14.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
+    { name: "Victory Vikings Mahesh", photo: "./V15.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 }
 
   ]
 }
@@ -757,6 +881,14 @@ function renderPlayers(filter) {
                 <div class="player">
                     <img src="${p.photo}" onclick="zoomImage('${p.photo}')">
                     <h4>${p.name}</h4>
+
+     <div class="player-stats">
+    <!-- <p>🏏 Runs: ${p.runs}</p>
+<p>🎯 Wickets: ${p.wickets}</p>
+<p>6️⃣ Sixes: ${p.Sixes}</p>
+<p>4️⃣ Fours: ${p.Fours}</p>
+ <p>⭐ Score: ${p.score}</p> -->
+   </div>
                 </div>
             `;
         });
@@ -796,6 +928,15 @@ function selectTeam(index) {
     🏆 Do you want to deserve this trophy? 
 </div>
     </div>
+	
+
+        <div class="stats">
+            <div class="stat"><h3>120</h3><p>Players</p></div>
+            <div class="stat"><h3>OLIVE PREMIER LEAGUE</h3></div>
+            <div class="stat"><h3>SEASON</h3><p>2026</p></div>
+        </div>
+		
+		<div>
 
     <img src="${currentTeam.posterPhoto}"
          class="poster-img"
@@ -803,11 +944,13 @@ function selectTeam(index) {
 
 </div>
 
-        <div class="stats">
-            <div class="stat"><h3>120</h3><p>Players</p></div>
-            <div class="stat"><h3>OLIVE PREMIER LEAGUE</h3></div>
-            <div class="stat"><h3>SEASON</h3><p>2026</p></div>
-        </div>
+<div>
+
+    <img src="${currentTeam.trophyPhoto}"
+         class="trophy-img"
+         onclick="zoomImage('${currentTeam.trophyPhoto}')">
+
+</div>
 		
 		
     `;
