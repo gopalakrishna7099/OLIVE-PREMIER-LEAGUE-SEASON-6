@@ -439,7 +439,7 @@ color:#fff;
 .league-logo{
     display:block;
     width:100%;
-    max-width:40px;
+    max-width:20px;
     height:auto;
     margin:0 auto 12px;
     object-fit:contain;
@@ -505,6 +505,40 @@ color:#fff;
 }
 
 
+
+.leaderboard-btn{
+    background:linear-gradient(135deg,gold,orange);
+    color:#000;
+    font-weight:700;
+}
+
+.leaderboard-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+    padding:20px;
+}
+
+.leaderboard-img{
+    width:70%;
+    border-radius:15px;
+    border:3px solid gold;
+    box-shadow:0 0 20px rgba(255,215,0,.3);
+    cursor:pointer;
+    transition:.3s;
+}
+
+.leaderboard-img:hover{
+    transform:scale(1.03);
+}
+
+@media(max-width:768px){
+    .leaderboard-grid{
+        grid-template-columns:1fr;
+        padding:10px;
+    }
+}
+
 </style>
 
 </head>
@@ -517,7 +551,7 @@ color:#fff;
 
 <div class="logo-banner">
 
-    <img src="./LOGO.PNG" alt="OPL Logo" class="league-logo">
+    <img src="logo/LOGO.PNG" alt="OPL Logo" class="league-logo">
 
     <div class="league-info">
         
@@ -530,7 +564,13 @@ color:#fff;
 
 
 <h3>TEAMS NAMES</h3>
+<div class="team-btn leaderboard-btn" onclick="showLeaderboard()">
+ Score Board 
+</div>
+
 <div id="teamList"></div>
+
+
 
 </div>
 
@@ -561,6 +601,25 @@ color:#fff;
 
 <div class="players" id="players"></div>
 
+<div id="leaderboardPage" style="display:none;">
+    <h2 style="text-align:center;color:gold;margin:20px 0;">
+        🏆 OPL Season 6 Leaderboard
+    </h2>
+
+    <div class="leaderboard-grid">
+
+        <img src="./leaderboard/TURBO.PNG" class="leaderboard-img" onclick="zoomImage('./leaderboard/TURBO.PNG')">
+        <img src="./leaderboard/OLIVE.PNG" class="leaderboard-img" onclick="zoomImage('./leaderboard/OLIVE.PNG')">
+        <img src="./leaderboard/TEAM.PNG" class="leaderboard-img" onclick="zoomImage('./leaderboard/TEAM.PNG')">
+        <img src="./leaderboard/BLACK.PNG" class="leaderboard-img" onclick="zoomImage('./leaderboard/BLACK.PNG')">
+        <img src="./leaderboard/BLUE.PNG" class="leaderboard-img" onclick="zoomImage('./leaderboard/BLUE.PNG')">
+        <img src="./leaderboard/POWER.PNG" class="leaderboard-img" onclick="zoomImage('./leaderboard/POWER.PNG')">
+        <img src="./leaderboard/SHADOW.PNG" class="leaderboard-img" onclick="zoomImage('./leaderboard/SHADOW.PNG')">
+        <img src="./leaderboard/VICTORY.PNG" class="leaderboard-img" onclick="zoomImage('./leaderboard/VICTORY.PNG')">
+
+    </div>
+</div>
+
 <div id="imageModal" class="image-modal">
     <span class="close-modal">&times;</span>
     <img id="modalImg" class="modal-content">
@@ -587,7 +646,7 @@ const teams = [
 name:"Turbo Titans",
 owner:"Shabeer",
 color:"#004BA0",
-ownerPhoto:"./T.png",
+ownerPhoto:"owners/T.png",
 posterPhoto:"./OWNER1.PNG",
 trophyPhoto:"./TROPHY.PNG",
 players: [
@@ -614,7 +673,7 @@ name:"Olive Firebirds",
 owner:"Rajasekhar",
 color:"#F9CD05",
 ownerPhoto:"./O.png",
-posterPhoto:"./owner2.png",
+posterPhoto:"./OWNER2.PNG",
 trophyPhoto:"./TROPHY.PNG",
 players: [
     { name: "Olive Firebirds Brahmaiah Divve", photo: "./O1.PNG", runs: 4320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
@@ -640,7 +699,7 @@ name:"Team CC",
 owner:"Mahender",
 color:"#EC1C24",
 ownerPhoto:"./TE.png",
-posterPhoto:"./owner3.PNG",
+posterPhoto:"./OWNER3.PNG",
 trophyPhoto:"./TROPHY.PNG",
 players: [
     { name: "Team CC Venkatesh", photo: "./TC1.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
@@ -666,7 +725,7 @@ name:"Black Panthers",
 owner:"Vamsi M",
 color:"#3B0A45",
 ownerPhoto:"./BL.png",
-posterPhoto:"./owner4.PNG",
+posterPhoto:"./OWNER4.PNG",
 trophyPhoto:"./TROPHY.PNG",
 players: [
     { name: "Black Panthers Vijendhar", photo: "./B1.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
@@ -692,7 +751,7 @@ name:"Blue Olive Strikers",
 owner:"Teja Hareesh",
 color:"#FF822A",
 ownerPhoto:"./B.png",
-posterPhoto:"./owner5.PNG",
+posterPhoto:"./OWNER5.PNG",
 trophyPhoto:"./TROPHY.PNG",
 players: [
     { name: "Blue Olive Strikers Sandeep", photo: "./BO1.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
@@ -719,7 +778,7 @@ players: [
   owner: "Narayana P ",
   color: "#004BA0",
   ownerPhoto: "./P.png",
-  posterPhoto:"./owner6.PNG",
+  posterPhoto:"./OWNER6.PNG",
   trophyPhoto:"./TROPHY.PNG",
   players: [
 
@@ -750,7 +809,7 @@ name:"Shadow Strikers",
 owner:"Sharat Gade",
 color:"#004C93",
 ownerPhoto:"./S.png",
-posterPhoto:"./owner7.PNG",
+posterPhoto:"./OWNER7.PNG",
 trophyPhoto:"./TROPHY.PNG",
 players: [
     { name: "Shadow Strikers Vamsi", photo: "./S1.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
@@ -776,7 +835,7 @@ name:"Victory Vikings",
 owner:"Rexlin Rajan",
 color:"#ED1B24",
 ownerPhoto:"./V.png",
-posterPhoto:"./owner8.PNG",
+posterPhoto:"./OWNER8.PNG",
 trophyPhoto:"./TROPHY.PNG",
 players: [
     { name: "Victory Vikings Sai Varma", photo: "./V1.PNG", runs: 320, wickets: 12,matches:8,score: 145, Sixes: 3 , Fours : 4 },
@@ -899,6 +958,12 @@ function renderPlayers(filter) {
 function selectTeam(index) {
     currentIndex = index;
     currentTeam = teams[index];
+	
+	// Hide Leaderboard and show Team Dashboard
+    document.getElementById("leaderboardPage").style.display = "none";
+    document.getElementById("hero").style.display = "block";
+    document.querySelector(".search").style.display = "block";
+    document.getElementById("players").style.display = "grid";
 
     hero.style.background =
         `linear-gradient(135deg,${currentTeam.color},#0b1224)`;
@@ -1048,6 +1113,21 @@ document.addEventListener("click", function(e){
         modal.style.display = "none";
     }
 });
+
+
+function showLeaderboard(){
+
+    document.getElementById("hero").style.display = "none";
+    document.querySelector(".search").style.display = "none";
+    document.getElementById("players").style.display = "none";
+
+    document.getElementById("leaderboardPage").style.display = "block";
+}
+
+
+
+
+
 
 </script>
 
